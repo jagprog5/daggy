@@ -19,13 +19,13 @@
 //!
 //! ```toml
 //! [dependencies]
-//! daggy = "0.9.0"
+//! daggy = "0.10.0"
 //!
 //! # Enables the `StableDag` type.
-//! daggy = { version = "0.9.0", features = ["stable_dag"] }
+//! daggy = { version = "0.10.0", features = ["stable_dag"] }
 //!
 //! # Allows the `Dag` to be serialized and deserialized.
-//! daggy = { version = "0.9.0", features = ["serde-1"] }
+//! daggy = { version = "0.10.0", features = ["serde-1"] }
 //! ```
 //!
 //! # Examples
@@ -783,7 +783,10 @@ where
     }
 
     /// Mutates the DAG into its [transitive reduction](https://en.wikipedia.org/wiki/Directed_acyclic_graph#Transitive_closure_and_transitive_reduction)
-    pub fn transitive_reduce(&mut self, roots: Vec<NodeIndex<Ix>>) {
+    pub fn transitive_reduce<I>(&mut self, roots: I)
+    where
+        I: IntoIterator<Item = NodeIndex<Ix>>,
+    {
         for root in roots {
             self.transitive_reduce_iter(root, &mut Vec::new())
         }

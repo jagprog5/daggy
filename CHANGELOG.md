@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.0 (2025-07-28)
+
+* Backwards compatible edit to transitive_reduce (allow iter arg)
+
 ## 0.9.0 (2025-04-18)
 
 * Update `petgraph` to `0.8` ([#43][#43]).
